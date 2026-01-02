@@ -173,10 +173,10 @@ const ContactSection = () => {
               <p className="text-sm text-muted-foreground">
                 Or email directly at{" "}
                 <a 
-                  href="mailto:atul.sharma@email.com" 
+                  href="mailto:atul.sharma.09.10.2006@gmail.com" 
                   className="text-foreground hover:underline underline-offset-4"
                 >
-                  atul.sharma@email.com
+                  atul.sharma.09.10.2006@gmail.com
                 </a>
               </p>
             </div>

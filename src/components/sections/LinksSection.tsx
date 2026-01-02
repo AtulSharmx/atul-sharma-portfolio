@@ -28,7 +28,7 @@ const links = [
   {
     icon: Mail,
     label: "Email",
-    href: "mailto:atul.sharma@email.com",
+    href: "mailto:atul.sharma.09.10.2006@gmail.com",
     description: "Get in touch",
   },
 ];
