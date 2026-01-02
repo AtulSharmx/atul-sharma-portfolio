@@ -68,24 +68,24 @@ const ContactSection = () => {
             <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
               <div className="grid sm:grid-cols-2 gap-4">
                 <div className="space-y-2">
-                  <label htmlFor="name" className="text-sm font-medium">
+                  <label htmlFor="from_name" className="text-sm font-medium">
                     Name
                   </label>
                   <Input
-                    id="name"
-                    name="name"
+                    id="from_name"
+                    name="from_name"
                     placeholder="Your name"
                     required
                     className="bg-card"
                   />
                 </div>
                 <div className="space-y-2">
-                  <label htmlFor="email" className="text-sm font-medium">
+                  <label htmlFor="from_email" className="text-sm font-medium">
                     Email
                   </label>
                   <Input
-                    id="email"
-                    name="email"
+                    id="from_email"
+                    name="from_email"
                     type="email"
                     placeholder="your@email.com"
                     required
