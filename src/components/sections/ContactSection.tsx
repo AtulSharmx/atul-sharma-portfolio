@@ -1,6 +1,7 @@
 import { useState, useRef } from "react";
 import { Send } from "lucide-react";
 import emailjs from "@emailjs/browser";
+import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -10,13 +11,52 @@ const EMAILJS_SERVICE_ID = "service_n9q27tw";
 const EMAILJS_TEMPLATE_ID = "template_5963m7m";
 const EMAILJS_PUBLIC_KEY = "x-bV8g6m1Qdy0F1Ky";
 
+const contactSchema = z.object({
+  from_name: z.string().trim().min(1, "Name is required").max(100, "Name must be less than 100 characters"),
+  from_email: z.string().trim().email("Please enter a valid email address").max(255, "Email must be less than 255 characters"),
+  message: z.string().trim().min(1, "Message is required").max(1000, "Message must be less than 1000 characters"),
+});
+
+type FormErrors = Partial<Record<keyof z.infer<typeof contactSchema>, string>>;
+
 const ContactSection = () => {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errors, setErrors] = useState<FormErrors>({});
   const formRef = useRef<HTMLFormElement>(null);
+
+  const validateForm = (): boolean => {
+    if (!formRef.current) return false;
+    
+    const formData = new FormData(formRef.current);
+    const data = {
+      from_name: formData.get("from_name") as string,
+      from_email: formData.get("from_email") as string,
+      message: formData.get("message") as string,
+    };
+
+    const result = contactSchema.safeParse(data);
+    
+    if (!result.success) {
+      const fieldErrors: FormErrors = {};
+      result.error.errors.forEach((err) => {
+        if (err.path[0]) {
+          fieldErrors[err.path[0] as keyof FormErrors] = err.message;
+        }
+      });
+      setErrors(fieldErrors);
+      return false;
+    }
+    
+    setErrors({});
+    return true;
+  };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    
+    if (!validateForm()) return;
+    
     setIsSubmitting(true);
     
     try {
@@ -33,6 +73,7 @@ const ContactSection = () => {
       });
       
       formRef.current?.reset();
+      setErrors({});
     } catch (error) {
       toast({
         title: "Failed to send",
@@ -76,8 +117,11 @@ const ContactSection = () => {
                     name="from_name"
                     placeholder="Your name"
                     required
-                    className="bg-card"
+                    className={`bg-card ${errors.from_name ? "border-destructive" : ""}`}
                   />
+                  {errors.from_name && (
+                    <p className="text-sm text-destructive">{errors.from_name}</p>
+                  )}
                 </div>
                 <div className="space-y-2">
                   <label htmlFor="from_email" className="text-sm font-medium">
@@ -89,8 +133,11 @@ const ContactSection = () => {
                     type="email"
                     placeholder="your@email.com"
                     required
-                    className="bg-card"
+                    className={`bg-card ${errors.from_email ? "border-destructive" : ""}`}
                   />
+                  {errors.from_email && (
+                    <p className="text-sm text-destructive">{errors.from_email}</p>
+                  )}
                 </div>
               </div>
               
@@ -104,8 +151,11 @@ const ContactSection = () => {
                   placeholder="Tell me about the opportunity or project..."
                   rows={5}
                   required
-                  className="bg-card resize-none"
+                  className={`bg-card resize-none ${errors.message ? "border-destructive" : ""}`}
                 />
+                {errors.message && (
+                  <p className="text-sm text-destructive">{errors.message}</p>
+                )}
               </div>
 
               <Button 
