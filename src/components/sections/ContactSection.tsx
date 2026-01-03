@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const EMAILJS_SERVICE_ID = "service_n9q27tw";
 const EMAILJS_TEMPLATE_ID = "template_5963m7m";
@@ -24,6 +25,7 @@ const ContactSection = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errors, setErrors] = useState<FormErrors>({});
   const formRef = useRef<HTMLFormElement>(null);
+  const { ref, isVisible } = useScrollAnimation(0.1);
 
   const validateForm = (): boolean => {
     if (!formRef.current) return false;
@@ -87,7 +89,12 @@ const ContactSection = () => {
 
   return (
     <section id="contact" className="py-24 lg:py-32 px-6 lg:px-12">
-      <div className="max-w-4xl mx-auto">
+      <div 
+        ref={ref}
+        className={`max-w-4xl mx-auto transition-all duration-700 ${
+          isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+        }`}
+      >
         <div className="grid lg:grid-cols-3 gap-12 lg:gap-16">
           <div className="lg:col-span-1">
             <h2 className="text-sm font-mono text-muted-foreground tracking-wide uppercase">

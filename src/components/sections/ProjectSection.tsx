@@ -1,5 +1,6 @@
 import { ExternalLink, FileText, Sparkles, Download, CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const features = [
   {
@@ -25,9 +26,16 @@ const features = [
 ];
 
 const ProjectSection = () => {
+  const { ref, isVisible } = useScrollAnimation(0.1);
+
   return (
     <section id="project" className="py-24 lg:py-32 px-6 lg:px-12">
-      <div className="max-w-4xl mx-auto">
+      <div 
+        ref={ref}
+        className={`max-w-4xl mx-auto transition-all duration-700 ${
+          isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+        }`}
+      >
         <div className="grid lg:grid-cols-3 gap-12 lg:gap-16">
           <div className="lg:col-span-1">
             <h2 className="text-sm font-mono text-muted-foreground tracking-wide uppercase">
@@ -69,9 +77,14 @@ const ProjectSection = () => {
               {features.map((feature, index) => (
                 <div 
                   key={index} 
-                  className="group p-4 rounded-lg border border-border bg-card hover:bg-accent transition-colors"
+                  className="group p-4 rounded-lg border border-border bg-card hover:bg-accent transition-all duration-300 hover-lift"
+                  style={{ 
+                    transitionDelay: `${index * 100}ms`,
+                    opacity: isVisible ? 1 : 0,
+                    transform: isVisible ? 'translateY(0)' : 'translateY(20px)'
+                  }}
                 >
-                  <feature.icon className="h-5 w-5 text-muted-foreground mb-3 group-hover:text-foreground transition-colors" />
+                  <feature.icon className="h-5 w-5 text-muted-foreground mb-3 group-hover:text-foreground transition-colors duration-300" />
                   <h4 className="font-medium mb-1">{feature.title}</h4>
                   <p className="text-sm text-muted-foreground">{feature.description}</p>
                 </div>
