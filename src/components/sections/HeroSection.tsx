@@ -24,8 +24,9 @@ const HeroSection = () => {
           </div>
           
           <p className="text-lg md:text-xl text-muted-foreground max-w-2xl leading-relaxed animate-fade-in-delay-2">
-            I build AI-powered tools that solve real problems. Currently developing Clear CV, 
-            an intelligent resume optimizer that helps job seekers beat ATS systems.
+            I create practical AI tools that address genuine challenges people face every day. 
+            My current focus is Clear CV, a resume optimization tool designed to help candidates 
+            navigate automated screening systems with confidence.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 pt-4 animate-fade-in-delay-3">

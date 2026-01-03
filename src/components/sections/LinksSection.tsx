@@ -1,34 +1,41 @@
-import { Github, Linkedin, ExternalLink, FileDown, Mail } from "lucide-react";
+import { Github, Linkedin, ExternalLink, FileDown, Mail, Instagram } from "lucide-react";
 
 const links = [
   {
     icon: Linkedin,
     label: "LinkedIn",
-    href: "https://linkedin.com/in/atulsharma",
+    href: "https://www.linkedin.com/in/atul-sharma-869715392/",
     description: "Professional profile",
   },
   {
     icon: Github,
     label: "GitHub",
-    href: "https://github.com/atulsharma",
-    description: "Code & projects",
+    href: "https://github.com/AtulSharmx",
+    description: "Code and projects",
+  },
+  {
+    icon: Instagram,
+    label: "Instagram",
+    href: "https://www.instagram.com/atul_sharmx_/",
+    description: "Personal updates",
   },
   {
     icon: ExternalLink,
-    label: "Clear CV Demo",
-    href: "https://clearcv.lovable.app",
-    description: "Live project",
+    label: "Clear CV",
+    href: "https://github.com/AtulSharmx/clearcv-optimize",
+    description: "View project",
   },
   {
     icon: FileDown,
     label: "Resume",
-    href: "#",
+    href: "/resume.pdf",
     description: "Download PDF",
+    download: true,
   },
   {
     icon: Mail,
     label: "Email",
-    href: "mailto:atul.sharma.09.10.2006@gmail.com",
+    href: "https://mail.google.com/mail/?view=cm&fs=1&to=atul.sharma.09.10.2006@gmail.com",
     description: "Get in touch",
   },
 ];
@@ -52,6 +59,7 @@ const LinksSection = () => {
                   href={link.href}
                   target={link.href.startsWith("http") ? "_blank" : undefined}
                   rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                  download={link.download ? "Atul_Sharma_Resume.pdf" : undefined}
                   className="group p-5 rounded-lg border border-border bg-background hover:bg-accent transition-all hover-lift"
                 >
                   <link.icon className="h-5 w-5 text-muted-foreground mb-3 group-hover:text-foreground transition-colors" />

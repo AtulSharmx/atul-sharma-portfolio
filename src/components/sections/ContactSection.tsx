@@ -173,7 +173,9 @@ const ContactSection = () => {
               <p className="text-sm text-muted-foreground">
                 Or email directly at{" "}
                 <a 
-                  href="mailto:atul.sharma.09.10.2006@gmail.com" 
+                  href="https://mail.google.com/mail/?view=cm&fs=1&to=atul.sharma.09.10.2006@gmail.com" 
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="text-foreground hover:underline underline-offset-4"
                 >
                   atul.sharma.09.10.2006@gmail.com

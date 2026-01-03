@@ -10,7 +10,7 @@ const Footer = () => {
           </p>
           <div className="flex items-center gap-6">
             <a
-              href="https://linkedin.com/in/atulsharma"
+              href="https://www.linkedin.com/in/atul-sharma-869715392/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-sm text-muted-foreground hover:text-foreground transition-colors"
@@ -18,12 +18,20 @@ const Footer = () => {
               LinkedIn
             </a>
             <a
-              href="https://github.com/atulsharma"
+              href="https://github.com/AtulSharmx"
               target="_blank"
               rel="noopener noreferrer"
               className="text-sm text-muted-foreground hover:text-foreground transition-colors"
             >
               GitHub
+            </a>
+            <a
+              href="https://www.instagram.com/atul_sharmx_/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+            >
+              Instagram
             </a>
           </div>
         </div>
