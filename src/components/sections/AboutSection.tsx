@@ -1,7 +1,16 @@
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+
 const AboutSection = () => {
+  const { ref, isVisible } = useScrollAnimation(0.1);
+
   return (
     <section id="about" className="py-24 lg:py-32 px-6 lg:px-12">
-      <div className="max-w-4xl mx-auto">
+      <div 
+        ref={ref}
+        className={`max-w-4xl mx-auto transition-all duration-700 ${
+          isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+        }`}
+      >
         <div className="grid lg:grid-cols-3 gap-12 lg:gap-16">
           <div className="lg:col-span-1">
             <h2 className="text-sm font-mono text-muted-foreground tracking-wide uppercase">
