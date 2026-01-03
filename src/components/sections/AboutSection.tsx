@@ -11,20 +11,21 @@ const AboutSection = () => {
           
           <div className="lg:col-span-2 space-y-6">
             <p className="text-2xl md:text-3xl font-serif leading-relaxed">
-              I transform complex problems into elegant, functional solutions through code and AI.
+              I believe the best solutions come from understanding both the problem and the people it affects.
             </p>
             
             <div className="space-y-4 text-muted-foreground leading-relaxed">
               <p>
-                Currently pursuing a BCA in Cybersecurity at SGT University, I focus on building 
-                practical tools that create real impact. My approach combines technical fundamentals 
-                with modern AI capabilities to develop solutions that matter.
+                I am a second-year Cybersecurity student at SGT University with a genuine curiosity 
+                for how things work and a drive to make them work better. My journey into AI tools 
+                started when I noticed how many talented people struggle to get past automated 
+                resume screening, and I decided to do something about it.
               </p>
               <p>
-                As a problem solver at heart, I thrive on understanding systems deeply and finding 
-                efficient ways to improve them. Whether it is optimizing a resume for ATS compatibility 
-                or exploring cybersecurity vulnerabilities, I bring the same methodical, detail-oriented 
-                approach to every project.
+                What excites me most is building things that are genuinely useful. I approach every 
+                project with patience and attention to detail, taking time to understand the real 
+                needs before writing a single line of code. Security and reliability are not 
+                afterthoughts for me; they are foundational to everything I create.
               </p>
             </div>
 

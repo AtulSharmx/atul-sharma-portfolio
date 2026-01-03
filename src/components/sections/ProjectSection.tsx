@@ -52,14 +52,16 @@ const ProjectSection = () => {
 
             <div className="space-y-4 text-muted-foreground leading-relaxed">
               <p>
-                Over 75% of resumes are rejected by ATS systems before a human ever sees them. 
-                Clear CV solves this by intelligently analyzing your resume against job descriptions 
-                and optimizing it for automated screening systems.
+                Most job seekers do not realize that their resume might never reach human eyes. 
+                Automated screening systems filter out qualified candidates simply because their 
+                resumes are not formatted or worded in ways these systems understand. I built 
+                Clear CV to level the playing field.
               </p>
               <p>
-                Built to be practical and effective, it provides real-time feedback and generates 
-                ATS-compatible output that maintains your professional narrative while maximizing 
-                your chances of getting past the initial screening.
+                The tool analyzes your resume alongside the job description you are targeting, 
+                identifies gaps and opportunities, and helps you present your experience in a way 
+                that resonates with both algorithms and hiring managers. It is straightforward, 
+                practical, and designed with real job seekers in mind.
               </p>
             </div>
 
@@ -83,7 +85,7 @@ const ProjectSection = () => {
                 asChild
               >
                 <a 
-                  href="https://clearcv.lovable.app" 
+                  href="https://github.com/AtulSharmx/clearcv-optimize" 
                   target="_blank" 
                   rel="noopener noreferrer"
                 >
