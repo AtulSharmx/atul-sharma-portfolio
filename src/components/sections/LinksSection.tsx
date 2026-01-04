@@ -1,6 +1,6 @@
-import { Github, Linkedin, ExternalLink, FileDown, Mail, Instagram, Check, Copy } from "lucide-react";
+import { Github, Linkedin, ExternalLink, FileDown, Mail, Instagram, Check } from "lucide-react";
 import { useState } from "react";
-import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import { useScrollAnimation, useStaggeredAnimation } from "@/hooks/useScrollAnimation";
 import { toast } from "sonner";
 
 const links = [
@@ -46,7 +46,11 @@ const links = [
 
 const LinksSection = () => {
   const [copied, setCopied] = useState(false);
-  const { ref, isVisible } = useScrollAnimation(0.1);
+  const { ref, isVisible } = useScrollAnimation({ threshold: 0.1, rootMargin: "0px 0px -100px 0px" });
+  const { ref: linksRef, isVisible: linksVisible, getItemStyle } = useStaggeredAnimation(links.length, {
+    threshold: 0.1,
+    staggerDelay: 80,
+  });
 
   const handleEmailClick = async (e: React.MouseEvent) => {
     e.preventDefault();
@@ -66,18 +70,22 @@ const LinksSection = () => {
     <section id="links" className="py-24 lg:py-32 px-6 lg:px-12 bg-card">
       <div 
         ref={ref}
-        className={`max-w-4xl mx-auto transition-all duration-700 ${
-          isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+        className={`max-w-4xl mx-auto transition-all duration-700 ease-out ${
+          isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
         }`}
       >
         <div className="grid lg:grid-cols-3 gap-12 lg:gap-16">
-          <div className="lg:col-span-1">
+          <div 
+            className={`lg:col-span-1 transition-all duration-700 delay-100 ${
+              isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-8"
+            }`}
+          >
             <h2 className="text-sm font-mono text-muted-foreground tracking-wide uppercase">
               Connect
             </h2>
           </div>
           
-          <div className="lg:col-span-2">
+          <div className="lg:col-span-2" ref={linksRef}>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {links.map((link, index) => {
                 const isEmailLink = 'isEmail' in link && link.isEmail;
@@ -90,17 +98,13 @@ const LinksSection = () => {
                     rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
                     download={'download' in link && link.download ? "Atul_Sharma_Resume.pdf" : undefined}
                     onClick={isEmailLink ? handleEmailClick : undefined}
-                    className={`group p-5 rounded-lg border border-border bg-background hover:bg-accent transition-all duration-300 hover-lift cursor-pointer`}
-                    style={{ 
-                      transitionDelay: `${index * 50}ms`,
-                      opacity: isVisible ? 1 : 0,
-                      transform: isVisible ? 'translateY(0)' : 'translateY(20px)'
-                    }}
+                    className="group p-5 rounded-lg border border-border bg-background hover:bg-accent transition-all duration-300 hover-lift cursor-pointer"
+                    style={getItemStyle(index)}
                   >
                     {isEmailLink && copied ? (
-                      <Check className="h-5 w-5 text-green-500 mb-3 transition-all duration-300" />
+                      <Check className="h-5 w-5 text-green-500 mb-3 transition-all duration-300 scale-110" />
                     ) : (
-                      <link.icon className="h-5 w-5 text-muted-foreground mb-3 group-hover:text-foreground transition-colors duration-300" />
+                      <link.icon className="h-5 w-5 text-muted-foreground mb-3 group-hover:text-foreground group-hover:scale-110 transition-all duration-300" />
                     )}
                     <p className="font-medium group-hover:text-foreground transition-colors duration-300">
                       {isEmailLink && copied ? "Copied!" : link.label}

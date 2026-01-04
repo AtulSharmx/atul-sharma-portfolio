@@ -11,11 +11,11 @@ const HeroSection = () => {
   };
 
   return (
-    <section className="min-h-screen flex flex-col justify-center relative px-6 lg:px-12">
+    <section className="min-h-screen flex flex-col justify-center relative px-6 lg:px-12 overflow-hidden">
       <div className="max-w-4xl mx-auto w-full">
         <div className="space-y-8">
           <div className="space-y-4">
-            <p className="text-muted-foreground font-mono text-sm tracking-wide animate-fade-in-up">
+            <p className="text-muted-foreground font-mono text-sm tracking-wide animate-blur-in">
               AI Tool Builder / Cybersecurity Student
             </p>
             <h1 className="text-5xl md:text-7xl lg:text-8xl font-serif font-medium tracking-tight animate-fade-in-delay-1">
@@ -34,28 +34,28 @@ const HeroSection = () => {
               variant="default" 
               size="lg"
               onClick={scrollToProject}
-              className="group"
+              className="group hover:shadow-lg transition-all duration-300"
             >
               View Project
-              <ExternalLink className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+              <ExternalLink className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-0.5" />
             </Button>
             <Button 
               variant="outline" 
               size="lg"
               onClick={scrollToContact}
-              className="group"
+              className="group hover:shadow-lg transition-all duration-300"
             >
               Contact Me
-              <Mail className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+              <Mail className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
             </Button>
           </div>
         </div>
       </div>
 
-      <div className="absolute bottom-12 left-1/2 -translate-x-1/2 animate-fade-in-delay-3">
+      <div className="absolute bottom-12 left-1/2 -translate-x-1/2 animate-fade-in-delay-4">
         <button 
           onClick={() => document.getElementById("about")?.scrollIntoView({ behavior: "smooth" })}
-          className="p-2 text-muted-foreground hover:text-foreground transition-colors"
+          className="p-2 text-muted-foreground hover:text-foreground transition-all duration-300 hover:scale-110"
           aria-label="Scroll to about section"
         >
           <ArrowDown className="h-5 w-5 animate-bounce" />
