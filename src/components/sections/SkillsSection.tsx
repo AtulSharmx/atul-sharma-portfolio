@@ -1,4 +1,4 @@
-import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import { useScrollAnimation, useStaggeredAnimation } from "@/hooks/useScrollAnimation";
 
 const skillCategories = [
   {
@@ -19,18 +19,26 @@ const skillCategories = [
 ];
 
 const SkillsSection = () => {
-  const { ref, isVisible } = useScrollAnimation(0.1);
+  const { ref, isVisible, getItemStyle } = useStaggeredAnimation(skillCategories.length, {
+    threshold: 0.1,
+    rootMargin: "0px 0px -100px 0px",
+    staggerDelay: 150,
+  });
 
   return (
     <section id="skills" className="py-24 lg:py-32 px-6 lg:px-12 bg-card">
       <div 
         ref={ref}
-        className={`max-w-4xl mx-auto transition-all duration-700 ${
-          isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+        className={`max-w-4xl mx-auto transition-all duration-700 ease-out ${
+          isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
         }`}
       >
         <div className="grid lg:grid-cols-3 gap-12 lg:gap-16">
-          <div className="lg:col-span-1">
+          <div 
+            className={`lg:col-span-1 transition-all duration-700 delay-100 ${
+              isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-8"
+            }`}
+          >
             <h2 className="text-sm font-mono text-muted-foreground tracking-wide uppercase">
               Skills
             </h2>
@@ -42,12 +50,7 @@ const SkillsSection = () => {
                 <div 
                   key={index} 
                   className="space-y-4"
-                  style={{ 
-                    transitionDelay: `${index * 150}ms`,
-                    opacity: isVisible ? 1 : 0,
-                    transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
-                    transition: 'all 0.5s ease-out'
-                  }}
+                  style={getItemStyle(index)}
                 >
                   <div className="flex items-baseline justify-between">
                     <h3 className="font-medium text-lg">{category.title}</h3>
@@ -59,7 +62,10 @@ const SkillsSection = () => {
                     {category.skills.map((skill, skillIndex) => (
                       <span
                         key={skillIndex}
-                        className="px-4 py-2 bg-secondary text-secondary-foreground text-sm rounded-full transition-all duration-300 hover:bg-muted hover:scale-105"
+                        className="px-4 py-2 bg-secondary text-secondary-foreground text-sm rounded-full transition-all duration-300 hover:bg-muted hover:scale-105 hover:shadow-md cursor-default"
+                        style={{
+                          transitionDelay: `${(index * 150) + (skillIndex * 50)}ms`,
+                        }}
                       >
                         {skill}
                       </span>

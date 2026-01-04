@@ -1,6 +1,6 @@
 import { ExternalLink, FileText, Sparkles, Download, CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import { useScrollAnimation, useStaggeredAnimation } from "@/hooks/useScrollAnimation";
 
 const features = [
   {
@@ -26,30 +26,42 @@ const features = [
 ];
 
 const ProjectSection = () => {
-  const { ref, isVisible } = useScrollAnimation(0.1);
+  const { ref, isVisible } = useScrollAnimation({ threshold: 0.1, rootMargin: "0px 0px -100px 0px" });
+  const { ref: featuresRef, isVisible: featuresVisible, getItemStyle } = useStaggeredAnimation(features.length, {
+    threshold: 0.1,
+    staggerDelay: 100,
+  });
 
   return (
     <section id="project" className="py-24 lg:py-32 px-6 lg:px-12">
       <div 
         ref={ref}
-        className={`max-w-4xl mx-auto transition-all duration-700 ${
-          isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+        className={`max-w-4xl mx-auto transition-all duration-700 ease-out ${
+          isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
         }`}
       >
         <div className="grid lg:grid-cols-3 gap-12 lg:gap-16">
-          <div className="lg:col-span-1">
+          <div 
+            className={`lg:col-span-1 transition-all duration-700 delay-100 ${
+              isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-8"
+            }`}
+          >
             <h2 className="text-sm font-mono text-muted-foreground tracking-wide uppercase">
               Featured Project
             </h2>
           </div>
           
           <div className="lg:col-span-2 space-y-8">
-            <div className="space-y-4">
+            <div 
+              className={`space-y-4 transition-all duration-700 delay-150 ${
+                isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+              }`}
+            >
               <div className="flex items-center gap-3">
                 <h3 className="text-3xl md:text-4xl font-serif font-medium">
                   Clear CV
                 </h3>
-                <span className="px-2 py-1 bg-primary text-primary-foreground text-xs font-mono rounded">
+                <span className="px-2 py-1 bg-primary text-primary-foreground text-xs font-mono rounded animate-pulse">
                   Active
                 </span>
               </div>
@@ -58,7 +70,11 @@ const ProjectSection = () => {
               </p>
             </div>
 
-            <div className="space-y-4 text-muted-foreground leading-relaxed">
+            <div 
+              className={`space-y-4 text-muted-foreground leading-relaxed transition-all duration-700 delay-200 ${
+                isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+              }`}
+            >
               <p>
                 Most job seekers do not realize that their resume might never reach human eyes. 
                 Automated screening systems filter out qualified candidates simply because their 
@@ -73,28 +89,28 @@ const ProjectSection = () => {
               </p>
             </div>
 
-            <div className="grid sm:grid-cols-2 gap-6 pt-4">
+            <div ref={featuresRef} className="grid sm:grid-cols-2 gap-6 pt-4">
               {features.map((feature, index) => (
                 <div 
                   key={index} 
                   className="group p-4 rounded-lg border border-border bg-card hover:bg-accent transition-all duration-300 hover-lift"
-                  style={{ 
-                    transitionDelay: `${index * 100}ms`,
-                    opacity: isVisible ? 1 : 0,
-                    transform: isVisible ? 'translateY(0)' : 'translateY(20px)'
-                  }}
+                  style={getItemStyle(index)}
                 >
-                  <feature.icon className="h-5 w-5 text-muted-foreground mb-3 group-hover:text-foreground transition-colors duration-300" />
-                  <h4 className="font-medium mb-1">{feature.title}</h4>
+                  <feature.icon className="h-5 w-5 text-muted-foreground mb-3 group-hover:text-foreground group-hover:scale-110 transition-all duration-300" />
+                  <h4 className="font-medium mb-1 group-hover:text-primary transition-colors duration-300">{feature.title}</h4>
                   <p className="text-sm text-muted-foreground">{feature.description}</p>
                 </div>
               ))}
             </div>
 
-            <div className="pt-4">
+            <div 
+              className={`pt-4 transition-all duration-700 delay-400 ${
+                isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+              }`}
+            >
               <Button 
                 size="lg" 
-                className="group"
+                className="group hover:shadow-lg transition-all duration-300"
                 asChild
               >
                 <a 
@@ -103,7 +119,7 @@ const ProjectSection = () => {
                   rel="noopener noreferrer"
                 >
                   Live Demo
-                  <ExternalLink className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+                  <ExternalLink className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-0.5" />
                 </a>
               </Button>
             </div>
