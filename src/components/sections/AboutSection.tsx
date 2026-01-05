@@ -7,15 +7,17 @@ const AboutSection = () => {
     <section id="about" className="py-24 lg:py-32 px-6 lg:px-12">
       <div 
         ref={ref}
-        className={`max-w-4xl mx-auto transition-all duration-700 ease-out ${
-          isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
+        className={`max-w-4xl mx-auto transition-all duration-1000 ease-out ${
+          isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
         }`}
+        style={{ transitionTimingFunction: 'cubic-bezier(0.16, 1, 0.3, 1)' }}
       >
         <div className="grid lg:grid-cols-3 gap-12 lg:gap-16">
           <div 
-            className={`lg:col-span-1 transition-all duration-700 delay-100 ${
-              isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-8"
+            className={`lg:col-span-1 transition-all duration-1000 ${
+              isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-6"
             }`}
+            style={{ transitionTimingFunction: 'cubic-bezier(0.16, 1, 0.3, 1)', transitionDelay: '100ms' }}
           >
             <h2 className="text-sm font-mono text-muted-foreground tracking-wide uppercase">
               About
@@ -24,17 +26,19 @@ const AboutSection = () => {
           
           <div className="lg:col-span-2 space-y-6">
             <p 
-              className={`text-2xl md:text-3xl font-serif leading-relaxed transition-all duration-700 delay-150 ${
-                isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+              className={`text-2xl md:text-3xl font-serif leading-relaxed transition-all duration-1000 ${
+                isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
               }`}
+              style={{ transitionTimingFunction: 'cubic-bezier(0.16, 1, 0.3, 1)', transitionDelay: '150ms' }}
             >
               I believe the best solutions come from understanding both the problem and the people it affects.
             </p>
             
             <div 
-              className={`space-y-4 text-muted-foreground leading-relaxed transition-all duration-700 delay-200 ${
-                isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+              className={`space-y-4 text-muted-foreground leading-relaxed transition-all duration-1000 ${
+                isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
               }`}
+              style={{ transitionTimingFunction: 'cubic-bezier(0.16, 1, 0.3, 1)', transitionDelay: '250ms' }}
             >
               <p>
                 I am a second-year Cybersecurity student at SGT University with a genuine curiosity 
@@ -51,19 +55,20 @@ const AboutSection = () => {
             </div>
 
             <div 
-              className={`pt-6 border-t border-border transition-all duration-700 delay-300 ${
-                isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+              className={`pt-6 border-t border-border transition-all duration-1000 ${
+                isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
               }`}
+              style={{ transitionTimingFunction: 'cubic-bezier(0.16, 1, 0.3, 1)', transitionDelay: '350ms' }}
             >
               <div className="grid grid-cols-2 gap-8">
                 <div className="group">
                   <p className="text-sm text-muted-foreground font-mono">Education</p>
-                  <p className="mt-1 font-medium group-hover:text-primary transition-colors duration-300">BCA Cybersecurity</p>
+                  <p className="mt-1 font-medium transition-colors duration-500 group-hover:text-primary">BCA Cybersecurity</p>
                   <p className="text-sm text-muted-foreground">SGT University</p>
                 </div>
                 <div className="group">
                   <p className="text-sm text-muted-foreground font-mono">Status</p>
-                  <p className="mt-1 font-medium group-hover:text-primary transition-colors duration-300">2nd Semester</p>
+                  <p className="mt-1 font-medium transition-colors duration-500 group-hover:text-primary">2nd Semester</p>
                   <p className="text-sm text-muted-foreground">Graduating August 2028</p>
                 </div>
               </div>

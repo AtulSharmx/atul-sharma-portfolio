@@ -91,15 +91,17 @@ const ContactSection = () => {
     <section id="contact" className="py-24 lg:py-32 px-6 lg:px-12">
       <div 
         ref={ref}
-        className={`max-w-4xl mx-auto transition-all duration-700 ease-out ${
-          isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
+        className={`max-w-4xl mx-auto transition-all duration-1000 ${
+          isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
         }`}
+        style={{ transitionTimingFunction: 'cubic-bezier(0.16, 1, 0.3, 1)' }}
       >
         <div className="grid lg:grid-cols-3 gap-12 lg:gap-16">
           <div 
-            className={`lg:col-span-1 transition-all duration-700 delay-100 ${
-              isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-8"
+            className={`lg:col-span-1 transition-all duration-1000 ${
+              isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-6"
             }`}
+            style={{ transitionTimingFunction: 'cubic-bezier(0.16, 1, 0.3, 1)', transitionDelay: '100ms' }}
           >
             <h2 className="text-sm font-mono text-muted-foreground tracking-wide uppercase">
               Contact
@@ -108,9 +110,10 @@ const ContactSection = () => {
           
           <div className="lg:col-span-2 space-y-8">
             <div 
-              className={`space-y-4 transition-all duration-700 delay-150 ${
-                isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+              className={`space-y-4 transition-all duration-1000 ${
+                isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
               }`}
+              style={{ transitionTimingFunction: 'cubic-bezier(0.16, 1, 0.3, 1)', transitionDelay: '150ms' }}
             >
               <h3 className="text-2xl md:text-3xl font-serif">
                 Let's work together
@@ -124,9 +127,10 @@ const ContactSection = () => {
             <form 
               ref={formRef} 
               onSubmit={handleSubmit} 
-              className={`space-y-6 transition-all duration-700 delay-200 ${
-                isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+              className={`space-y-6 transition-all duration-1000 ${
+                isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
               }`}
+              style={{ transitionTimingFunction: 'cubic-bezier(0.16, 1, 0.3, 1)', transitionDelay: '250ms' }}
             >
               <div className="grid sm:grid-cols-2 gap-4">
                 <div className="space-y-2">
@@ -138,7 +142,7 @@ const ContactSection = () => {
                     name="from_name"
                     placeholder="Your name"
                     required
-                    className={`bg-card transition-all duration-300 focus:scale-[1.01] ${errors.from_name ? "border-destructive" : ""}`}
+                    className={`bg-card transition-all duration-500 focus:scale-[1.01] ${errors.from_name ? "border-destructive" : ""}`}
                   />
                   {errors.from_name && (
                     <p className="text-sm text-destructive animate-fade-in">{errors.from_name}</p>
@@ -154,7 +158,7 @@ const ContactSection = () => {
                     type="email"
                     placeholder="your@email.com"
                     required
-                    className={`bg-card transition-all duration-300 focus:scale-[1.01] ${errors.from_email ? "border-destructive" : ""}`}
+                    className={`bg-card transition-all duration-500 focus:scale-[1.01] ${errors.from_email ? "border-destructive" : ""}`}
                   />
                   {errors.from_email && (
                     <p className="text-sm text-destructive animate-fade-in">{errors.from_email}</p>
@@ -172,7 +176,7 @@ const ContactSection = () => {
                   placeholder="Tell me about the opportunity or project..."
                   rows={5}
                   required
-                  className={`bg-card resize-none transition-all duration-300 focus:scale-[1.005] ${errors.message ? "border-destructive" : ""}`}
+                  className={`bg-card resize-none transition-all duration-500 focus:scale-[1.005] ${errors.message ? "border-destructive" : ""}`}
                 />
                 {errors.message && (
                   <p className="text-sm text-destructive animate-fade-in">{errors.message}</p>
@@ -183,17 +187,18 @@ const ContactSection = () => {
                 type="submit" 
                 size="lg"
                 disabled={isSubmitting}
-                className="group hover:shadow-lg transition-all duration-300"
+                className="group hover-magnetic hover:shadow-xl transition-all duration-500"
               >
                 {isSubmitting ? "Sending..." : "Send Message"}
-                <Send className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                <Send className="ml-2 h-4 w-4 transition-all duration-500 group-hover:translate-x-1 group-hover:scale-110" />
               </Button>
             </form>
 
             <div 
-              className={`pt-8 border-t border-border transition-all duration-700 delay-300 ${
-                isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+              className={`pt-8 border-t border-border transition-all duration-1000 ${
+                isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
               }`}
+              style={{ transitionTimingFunction: 'cubic-bezier(0.16, 1, 0.3, 1)', transitionDelay: '400ms' }}
             >
               <p className="text-sm text-muted-foreground">
                 Or email directly at{" "}
@@ -201,7 +206,7 @@ const ContactSection = () => {
                   href="https://mail.google.com/mail/?view=cm&fs=1&to=atul.sharma.09.10.2006@gmail.com" 
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-foreground hover:underline underline-offset-4 transition-all duration-300 hover:text-primary"
+                  className="text-foreground link-underline transition-all duration-500 hover:text-primary"
                 >
                   atul.sharma.09.10.2006@gmail.com
                 </a>
